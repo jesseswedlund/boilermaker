@@ -17,11 +17,14 @@ before_script:
 script:
   - npm test # test the code
   - npm run build-client # make the bundle
-# before_deploy:
-#   - rm -rf node_modules # omit from the tarball, since we skip cleanup
-# deploy:
-#   skip_cleanup: true # prevents travis from deleting the build
-#   provider: heroku
-#   app: boilermaker
-#   api_key:
-#     secure: YOUR-***ENCRYPTED***-API-KEY-HERE # see README
+before_deploy: # omit node_modules, since we set skip_cleanup below
+  - rm -rf node_modules
+deploy: # see README for details on these keys
+  # prevents travis from deleting the build
+  skip_cleanup: true
+  provider: heroku
+  # app should be your heroku app name; see README
+  app: boilermaker-jesse-test
+  # the secure key indicates an encrypted value; see README
+  api_key:
+    secure: fLhNCeEO1d9fb+HcQcjNN6nuv3FiwjKQQhmmq0u/Qrw4axXnyQlRy89pmn9Dl8NIhQyY27c13BEnGkiM33uD0fpdoxeE0gvsQHn86lZutRQoosqJEO0fO7Ok+8bx5Q5pavB3jwp6SkW7JlYoQ0e+DBC4+pobXtyeFU12XAPVQP3ha2gV9FbyOIR2LFlR92xiSmhQdchX6cYERFrP9JiA0Rwvp6AEkRy/85ENxXcHEAVO9qCvso9UDqSPFtGTNR3AfvtPZkmpIslBJWGeu4sLkdSBdt4neGiLSc0nM1onbA3N6kfmFFpai6cE6M9R240Zyz4ByjuhrrBp3JMWQg49yW3aJb59Meu8I1zY3Qozh485IlV1YVEYVlA7K1YIi+kFPNDr5aNwS42AM22H+5x9Fv+BWwoK6kKyfNgBs5gHFpmEA4jjKSzbXVGUiACh3F1Io9q5IChSHkSKqh5RAdbfWntLtBrEGS7J1WjDAaCZnP/amF+ovEO+BmgXQYi22kW3MAO94/QZnck+fOGQ/1AYHDOmsLzvShBozaqA8IB1k2rSsF/YC1QT0VkO4NtBhaG/Mh0m203WHg490ujEbwqPQwBU2nCcfe0uG7G76toGFZFHAtnTK5MOobKDlO+zTzqvpcf0LwFIQomI3NaTE0sAml9uYSSd+Y6GrC+rwcfmGh4=
